@@ -11,6 +11,11 @@ services:
     volumes:
       - ./src:/var/www/html
       - ./infra/nginx/default.conf:/etc/nginx/conf.d/default.conf
-    working_dir: /Users/ikedahiromu/develop/docker-laravel-handson/src
-
+    working_dir: $PWD/develop/docker-laravel-handson/src
+  db:
+    build: ./infra/mysql
+    volumes:
+      - db-store:/var/lib/mysql
+volumes:
+  db-store:
 
