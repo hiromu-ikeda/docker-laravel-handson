@@ -16,3 +16,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::group(['prefix' => 'contact', 'middleware' => 'auth'], function() {
+    Route::get('index', 'App\Http\Controllers\ContactFormController@index')->name('contact.index');
+});
+
+Route::resource('contacts', 'App\Http\Controllers\ContactFormController')->only([
+    'index', 'show'
+]);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
